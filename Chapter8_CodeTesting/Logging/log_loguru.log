@@ -1,0 +1,54 @@
+2020-04-18 17:29:30.896 | DEBUG    | __main__:divide_integers:19 - a=10, b=0
+2020-04-18 17:29:30.898 | ERROR    | __main__:main:25 - An error has been caught in function 'main', process 'MainProcess' (15332), thread 'MainThread' (14888):
+Traceback (most recent call last):
+
+  File "c:/Users/Jan/Dropbox/_Programmieren/UdemyPythonKurs/Chapter8_CodeTesting/Logging/logging_extern.py", line 28, in <module>
+    main()
+    -> <function main at 0x000001E175C98280>
+
+> File "c:/Users/Jan/Dropbox/_Programmieren/UdemyPythonKurs/Chapter8_CodeTesting/Logging/logging_extern.py", line 25, in main
+    print(divide_integers(10, 0))
+          -> <function divide_integers at 0x000001E175465D30>
+
+  File "c:/Users/Jan/Dropbox/_Programmieren/UdemyPythonKurs/Chapter8_CodeTesting/Logging/logging_extern.py", line 20, in divide_integers
+    result = a / b
+             |   -> 0
+             -> 10
+
+ZeroDivisionError: division by zero
+2020-04-18 17:29:30.909 | DEBUG    | __main__:divide_integers:19 - a=10, b=0
+2020-04-18 17:29:30.910 | ERROR    | __main__:main:25 - An error has been caught in function 'main', process 'MainProcess' (15332), thread 'MainThread' (14888):
+Traceback (most recent call last):
+
+  File "c:/Users/Jan/Dropbox/_Programmieren/UdemyPythonKurs/Chapter8_CodeTesting/Logging/logging_extern.py", line 28, in <module>
+    main()
+    -> <function main at 0x000001E175C98280>
+
+> File "c:/Users/Jan/Dropbox/_Programmieren/UdemyPythonKurs/Chapter8_CodeTesting/Logging/logging_extern.py", line 25, in main
+    print(divide_integers(10, 0))
+          -> <function divide_integers at 0x000001E175465D30>
+
+  File "c:/Users/Jan/Dropbox/_Programmieren/UdemyPythonKurs/Chapter8_CodeTesting/Logging/logging_extern.py", line 20, in divide_integers
+    result = a / b
+             |   -> 0
+             -> 10
+
+ZeroDivisionError: division by zero
+2020-04-18 17:29:30.917 | DEBUG    | __main__:divide_integers:19 - a=10, b=0
+2020-04-18 17:29:30.918 | ERROR    | __main__:main:25 - An error has been caught in function 'main', process 'MainProcess' (15332), thread 'MainThread' (14888):
+Traceback (most recent call last):
+
+  File "c:/Users/Jan/Dropbox/_Programmieren/UdemyPythonKurs/Chapter8_CodeTesting/Logging/logging_extern.py", line 28, in <module>
+    main()
+    -> <function main at 0x000001E175C98280>
+
+> File "c:/Users/Jan/Dropbox/_Programmieren/UdemyPythonKurs/Chapter8_CodeTesting/Logging/logging_extern.py", line 25, in main
+    print(divide_integers(10, 0))
+          -> <function divide_integers at 0x000001E175465D30>
+
+  File "c:/Users/Jan/Dropbox/_Programmieren/UdemyPythonKurs/Chapter8_CodeTesting/Logging/logging_extern.py", line 20, in divide_integers
+    result = a / b
+             |   -> 0
+             -> 10
+
+ZeroDivisionError: division by zero

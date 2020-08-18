@@ -1,0 +1,473 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>fastvector.vector &mdash; FastVector 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> FastVector
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">FastVector</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>fastvector.vector</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for fastvector.vector</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Own implementation of a ND vector class.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span> <span class="nn">array</span>
+<span class="kn">import</span> <span class="nn">numbers</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">total_ordering</span>
+
+<span class="kn">from</span> <span class="nn">.dtypes</span> <span class="kn">import</span> <span class="n">float64</span><span class="p">,</span> <span class="n">Number</span><span class="p">,</span> <span class="n">Values</span>
+
+<div class="viewcode-block" id="VectorND"><a class="viewcode-back" href="../../fastvector.html#fastvector.vector.VectorND">[docs]</a><span class="nd">@total_ordering</span> 
+<span class="k">class</span> <span class="nc">VectorND</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;VectorND class to perform simple vector operations.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="VectorND.__init__"><a class="viewcode-back" href="../../fastvector.html#fastvector.vector.VectorND.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float64</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Creates a vector instance with the given x and y values.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        args : tuple</span>
+<span class="sd">            The vector values.</span>
+<span class="sd">        dtype : str</span>
+<span class="sd">            The dtype of the underlying array.</span>
+<span class="sd">        </span>
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        TypeError</span>
+<span class="sd">            If x or y are not a number.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Values are passed in as a list</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="p">,</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="c1"># Values are passed in as optinal arguments</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">val</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">args</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dtype</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;You must pass in an list of numbers, or numbers as a args tuple!&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="VectorND.__call__"><a class="viewcode-back" href="../../fastvector.html#fastvector.vector.VectorND.__call__">[docs]</a>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Callable for the vector instance to return its representation.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        str</span>
+<span class="sd">            The representation of the vector instance.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Calling the __call__ function!&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="VectorND.__repr__"><a class="viewcode-back" href="../../fastvector.html#fastvector.vector.VectorND.__repr__">[docs]</a>    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The vector instance representation.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        str</span>
+<span class="sd">            The representation of the vector instance.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s1">&#39;vector.VectorND(</span><span class="si">{}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="VectorND.__str__"><a class="viewcode-back" href="../../fastvector.html#fastvector.vector.VectorND.__str__">[docs]</a>    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;The vector instance as a string.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        str</span>
+<span class="sd">            The vector instance as a string.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s1">&#39;(</span><span class="si">{}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="VectorND.__len__"><a class="viewcode-back" href="../../fastvector.html#fastvector.vector.VectorND.__len__">[docs]</a>    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Returns the length of the ND vector</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        int</span>
+<span class="sd">            The length for a ND vector is always 2.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="VectorND.__getitem__"><a class="viewcode-back" href="../../fastvector.html#fastvector.vector.VectorND.__getitem__">[docs]</a>    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Number</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Returns the vector item at index idx.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        idx : int</span>
+<span class="sd">            The index idx</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        number</span>
+<span class="sd">            If idx &lt; len: returns the value.</span>
+<span class="sd">            Else, IndexError.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s1">&#39;You can only pass in an index of 0 or 1!&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="VectorND.__setitem__"><a class="viewcode-back" href="../../fastvector.html#fastvector.vector.VectorND.__setitem__">[docs]</a>    <span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="n">Number</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Returns the vector item at index idx.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        idx : int</span>
+<span class="sd">            The index idx</span>
+<span class="sd">        val : nunmber</span>
+<span class="sd">            The new value at index idx</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s1">&#39;You can only use an index of 0 or 1!&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="VectorND.__bool__"><a class="viewcode-back" href="../../fastvector.html#fastvector.vector.VectorND.__bool__">[docs]</a>    <span class="k">def</span> <span class="fm">__bool__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Returns the truth value of the vector instance.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        bool</span>
+<span class="sd">            True, if the vector is not the Null-vector</span>
+<span class="sd">            False, else</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="VectorND.__abs__"><a class="viewcode-back" href="../../fastvector.html#fastvector.vector.VectorND.__abs__">[docs]</a>    <span class="k">def</span> <span class="fm">__abs__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Returns the length (magnitude) of the vector instance</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        float</span>
+<span class="sd">            Length of the vector instance.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">square_sum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">val</span><span class="o">**</span><span class="mf">2.0</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">square_sum</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="VectorND.__eq__"><a class="viewcode-back" href="../../fastvector.html#fastvector.vector.VectorND.__eq__">[docs]</a>    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other_vector</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Check if the vector instances have the same values.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        other_vector : VectorND</span>
+<span class="sd">            Other vector instance (right-hand-side of the operator)</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        bool</span>
+<span class="sd">            True, if the both vector instances have the same values.</span>
+<span class="sd">            False, else.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_vector_types</span><span class="p">(</span><span class="n">other_vector</span><span class="p">)</span>
+        <span class="n">is_equal</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">==</span> <span class="n">other_vector</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>
+            <span class="n">is_equal</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="n">is_equal</span></div>
+
+<div class="viewcode-block" id="VectorND.__lt__"><a class="viewcode-back" href="../../fastvector.html#fastvector.vector.VectorND.__lt__">[docs]</a>    <span class="k">def</span> <span class="fm">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other_vector</span><span class="p">:</span> <span class="n">VectorND</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Check if the self instance is less than the other vector instance.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        other_vector : VectorND</span>
+<span class="sd">            Other vector instance (right-hand-side of the operator)</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        bool</span>
+<span class="sd">            True, if the self instance is less than the other vector instance.</span>
+<span class="sd">            False, else.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_vector_types</span><span class="p">(</span><span class="n">other_vector</span><span class="p">)</span>
+        <span class="n">is_less_than</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">abs</span><span class="p">(</span><span class="n">other_vector</span><span class="p">):</span>
+            <span class="n">is_less_than</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="n">is_less_than</span></div>
+
+<div class="viewcode-block" id="VectorND.__add__"><a class="viewcode-back" href="../../fastvector.html#fastvector.vector.VectorND.__add__">[docs]</a>    <span class="k">def</span> <span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other_vector</span><span class="p">:</span> <span class="n">VectorND</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VectorND</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Returns the additon vector of the self and the other vector instance.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        other_vector : VectorND</span>
+<span class="sd">            Other vector instance (right-hand-side of the operator)</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        VectorND</span>
+<span class="sd">            The additon vector of the self and the other vector instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_vector_types</span><span class="p">(</span><span class="n">other_vector</span><span class="p">)</span>
+        <span class="n">add_result</span> <span class="o">=</span> <span class="p">[</span><span class="n">self_val</span> <span class="o">+</span> <span class="n">other_val</span> <span class="k">for</span> <span class="n">self_val</span><span class="p">,</span> <span class="n">other_val</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">other_vector</span><span class="o">.</span><span class="n">values</span><span class="p">)]</span>
+        <span class="k">return</span> <span class="n">VectorND</span><span class="p">(</span><span class="n">add_result</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="VectorND.__sub__"><a class="viewcode-back" href="../../fastvector.html#fastvector.vector.VectorND.__sub__">[docs]</a>    <span class="k">def</span> <span class="fm">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other_vector</span><span class="p">:</span> <span class="n">VectorND</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VectorND</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Returns the subtraction vector of the self and the other vector instance.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        other_vector : VectorND</span>
+<span class="sd">            Other vector instance (right-hand-side of the operator)</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        VectorND</span>
+<span class="sd">            The subtraction vector of the self and the other vector instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_vector_types</span><span class="p">(</span><span class="n">other_vector</span><span class="p">)</span>
+        <span class="n">sub_result</span> <span class="o">=</span> <span class="p">[</span><span class="n">self_val</span> <span class="o">-</span> <span class="n">other_val</span> <span class="k">for</span> <span class="n">self_val</span><span class="p">,</span> <span class="n">other_val</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">other_vector</span><span class="o">.</span><span class="n">values</span><span class="p">)]</span>
+        <span class="k">return</span> <span class="n">VectorND</span><span class="p">(</span><span class="n">sub_result</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="VectorND.__mul__"><a class="viewcode-back" href="../../fastvector.html#fastvector.vector.VectorND.__mul__">[docs]</a>    <span class="k">def</span> <span class="fm">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">VectorND</span><span class="p">,</span> <span class="n">Number</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">VectorND</span><span class="p">,</span> <span class="n">Number</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Returns the multiplication of the self vector and the other vector(or number) instance.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        other : VectorND or number</span>
+<span class="sd">            Other vector instance or scaler value (right-hand-side of the operator)</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        VectorND</span>
+<span class="sd">            The multiplication of the self vector and the other vector(or number) instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">VectorND</span><span class="p">):</span>
+            <span class="n">vector_dot</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">self_val</span> <span class="o">*</span> <span class="n">other_val</span> <span class="k">for</span> <span class="n">self_val</span><span class="p">,</span> <span class="n">other_val</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">values</span><span class="p">)])</span>
+            <span class="k">return</span> <span class="n">vector_dot</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">numbers</span><span class="o">.</span><span class="n">Real</span><span class="p">):</span>
+            <span class="n">vector_mul</span> <span class="o">=</span> <span class="p">[</span><span class="n">val</span> <span class="o">*</span> <span class="n">other</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">VectorND</span><span class="p">(</span><span class="n">vector_mul</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;You must pass in a vector instance or an int/float number!&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="VectorND.__truediv__"><a class="viewcode-back" href="../../fastvector.html#fastvector.vector.VectorND.__truediv__">[docs]</a>    <span class="k">def</span> <span class="fm">__truediv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Number</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VectorND</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Returns the multiplication of the self vector and the other vector(or number) instance.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        other : VectorND or number</span>
+<span class="sd">            Other vector instance or scaler value (right-hand-side of the operator)</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        VectorND</span>
+<span class="sd">            The multiplication of the self vector and the other vector(or number) instance</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">numbers</span><span class="o">.</span><span class="n">Real</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">other</span> <span class="o">!=</span> <span class="mf">0.0</span><span class="p">:</span>
+                <span class="n">vector_div</span> <span class="o">=</span> <span class="p">[</span><span class="n">val</span> <span class="o">/</span> <span class="n">other</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">]</span>
+                <span class="k">return</span> <span class="n">VectorND</span><span class="p">(</span><span class="n">vector_div</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;You cannot divide by zero!&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;You must pass in an int/float value!&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="VectorND.check_numeric_argument"><a class="viewcode-back" href="../../fastvector.html#fastvector.vector.VectorND.check_numeric_argument">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">check_numeric_argument</span><span class="p">(</span><span class="n">argument</span><span class="p">:</span> <span class="n">Number</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">argument</span><span class="p">,</span> <span class="n">numbers</span><span class="o">.</span><span class="n">Real</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;You must pass in an int/float value!&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="VectorND.check_vector_types"><a class="viewcode-back" href="../../fastvector.html#fastvector.vector.VectorND.check_vector_types">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">check_vector_types</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="n">VectorND</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Checks if the vector is an instance of the VectorND class.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        vector : VectorND</span>
+<span class="sd">            A vector instance.</span>
+<span class="sd">        </span>
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        TypeError</span>
+<span class="sd">            If vector is not an instance of the VectorND class.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span> <span class="n">VectorND</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;You have to pass in two instances of the vector class!&#39;</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Jan Schaffranek
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

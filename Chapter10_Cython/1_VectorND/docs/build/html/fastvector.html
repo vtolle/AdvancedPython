@@ -1,0 +1,503 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>fastvector package &mdash; FastVector 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> FastVector
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">fastvector package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-fastvector.vector">fastvector.vector module</a></li>
+<li><a class="reference internal" href="#module-fastvector">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">FastVector</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>fastvector package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/fastvector.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="fastvector-package">
+<h1>fastvector package<a class="headerlink" href="#fastvector-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-fastvector.vector">
+<span id="fastvector-vector-module"></span><h2>fastvector.vector module<a class="headerlink" href="#module-fastvector.vector" title="Permalink to this headline">¶</a></h2>
+<p>Own implementation of a 2D vector class.</p>
+<dl class="class">
+<dt id="fastvector.vector.Vector2D">
+<em class="property">class </em><code class="sig-prename descclassname">fastvector.vector.</code><code class="sig-name descname">Vector2D</code><span class="sig-paren">(</span><em class="sig-param">x: SupportsFloat = 0</em>, <em class="sig-param">y: SupportsFloat = 0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastvector/vector.html#Vector2D"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastvector.vector.Vector2D" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Vector2D class to perform simple vector operations.</p>
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#fastvector.vector.Vector2D.__call__" title="fastvector.vector.Vector2D.__call__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__call__</span></code></a>(self)</p></td>
+<td><p>Callable for the vector instance to return its representation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#fastvector.vector.Vector2D.check_vector_types" title="fastvector.vector.Vector2D.check_vector_types"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_vector_types</span></code></a>(self, vector2)</p></td>
+<td><p>Checks if the self and vector2 are an instance of the Vector2D class.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="fastvector.vector.Vector2D.__abs__">
+<code class="sig-name descname">__abs__</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span> &#x2192; 'float'<a class="reference internal" href="_modules/fastvector/vector.html#Vector2D.__abs__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastvector.vector.Vector2D.__abs__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the length (magnitude) of the vector instance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>float</dt><dd><p>Length of the vector instance.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="fastvector.vector.Vector2D.__add__">
+<code class="sig-name descname">__add__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">other_vector: 'Vector2D'</em><span class="sig-paren">)</span> &#x2192; 'Vector2D'<a class="reference internal" href="_modules/fastvector/vector.html#Vector2D.__add__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastvector.vector.Vector2D.__add__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the additon vector of the self and the other vector instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>other_vector</strong><span class="classifier">Vector2D</span></dt><dd><p>Other vector instance (right-hand-side of the operator)</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>Vector2D</dt><dd><p>The additon vector of the self and the other vector instance</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="fastvector.vector.Vector2D.__bool__">
+<code class="sig-name descname">__bool__</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span> &#x2192; 'bool'<a class="reference internal" href="_modules/fastvector/vector.html#Vector2D.__bool__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastvector.vector.Vector2D.__bool__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the truth value of the vector instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>bool</dt><dd><p>True, if the vector is not the Null-vector
+False, else</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="fastvector.vector.Vector2D.__call__">
+<code class="sig-name descname">__call__</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span> &#x2192; 'str'<a class="reference internal" href="_modules/fastvector/vector.html#Vector2D.__call__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastvector.vector.Vector2D.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Callable for the vector instance to return its representation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>str</dt><dd><p>The representation of the vector instance.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="fastvector.vector.Vector2D.__dict__">
+<code class="sig-name descname">__dict__</code><em class="property"> = mappingproxy({'__module__': 'fastvector.vector', '__doc__': 'Vector2D class to perform simple vector operations.\n    ', '__init__': &lt;function Vector2D.__init__&gt;, '__call__': &lt;function Vector2D.__call__&gt;, '__repr__': &lt;function Vector2D.__repr__&gt;, '__str__': &lt;function Vector2D.__str__&gt;, '__bool__': &lt;function Vector2D.__bool__&gt;, '__abs__': &lt;function Vector2D.__abs__&gt;, 'check_vector_types': &lt;function Vector2D.check_vector_types&gt;, '__eq__': &lt;function Vector2D.__eq__&gt;, '__lt__': &lt;function Vector2D.__lt__&gt;, '__add__': &lt;function Vector2D.__add__&gt;, '__sub__': &lt;function Vector2D.__sub__&gt;, '__mul__': &lt;function Vector2D.__mul__&gt;, '__truediv__': &lt;function Vector2D.__truediv__&gt;, '__dict__': &lt;attribute '__dict__' of 'Vector2D' objects&gt;, '__weakref__': &lt;attribute '__weakref__' of 'Vector2D' objects&gt;, '__hash__': None, '__gt__': &lt;function _gt_from_lt&gt;, '__le__': &lt;function _le_from_lt&gt;, '__ge__': &lt;function _ge_from_lt&gt;})</em><a class="headerlink" href="#fastvector.vector.Vector2D.__dict__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="fastvector.vector.Vector2D.__eq__">
+<code class="sig-name descname">__eq__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">other_vector: 'Any'</em><span class="sig-paren">)</span> &#x2192; 'bool'<a class="reference internal" href="_modules/fastvector/vector.html#Vector2D.__eq__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastvector.vector.Vector2D.__eq__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the vector instances have the same values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>other_vector</strong><span class="classifier">Vector2D</span></dt><dd><p>Other vector instance (right-hand-side of the operator)</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>bool</dt><dd><p>True, if the both vector instances have the same values.
+False, else.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="fastvector.vector.Vector2D.__ge__">
+<code class="sig-name descname">__ge__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">other</em>, <em class="sig-param">NotImplemented=NotImplemented</em><span class="sig-paren">)</span><a class="headerlink" href="#fastvector.vector.Vector2D.__ge__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a &gt;= b.  Computed by &#64;total_ordering from (not a &lt; b).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fastvector.vector.Vector2D.__gt__">
+<code class="sig-name descname">__gt__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">other</em>, <em class="sig-param">NotImplemented=NotImplemented</em><span class="sig-paren">)</span><a class="headerlink" href="#fastvector.vector.Vector2D.__gt__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a &gt; b.  Computed by &#64;total_ordering from (not a &lt; b) and (a != b).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="fastvector.vector.Vector2D.__hash__">
+<code class="sig-name descname">__hash__</code><em class="property"> = None</em><a class="headerlink" href="#fastvector.vector.Vector2D.__hash__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="fastvector.vector.Vector2D.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">x: 'SupportsFloat' = 0</em>, <em class="sig-param">y: 'SupportsFloat' = 0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastvector/vector.html#Vector2D.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastvector.vector.Vector2D.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a vector instance with the given x and y values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>x</strong><span class="classifier">number</span></dt><dd><p>x-Coordinate, by default 0</p>
+</dd>
+<dt><strong>y</strong><span class="classifier">number</span></dt><dd><p>y-Coordinate, by default 0</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><dl class="simple">
+<dt>TypeError</dt><dd><p>If x or y are not a number.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="fastvector.vector.Vector2D.__le__">
+<code class="sig-name descname">__le__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">other</em>, <em class="sig-param">NotImplemented=NotImplemented</em><span class="sig-paren">)</span><a class="headerlink" href="#fastvector.vector.Vector2D.__le__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a &lt;= b.  Computed by &#64;total_ordering from (a &lt; b) or (a == b).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fastvector.vector.Vector2D.__lt__">
+<code class="sig-name descname">__lt__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">other_vector: 'Vector2D'</em><span class="sig-paren">)</span> &#x2192; 'bool'<a class="reference internal" href="_modules/fastvector/vector.html#Vector2D.__lt__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastvector.vector.Vector2D.__lt__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the self instance is less than the other vector instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>other_vector</strong><span class="classifier">Vector2D</span></dt><dd><p>Other vector instance (right-hand-side of the operator)</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>bool</dt><dd><p>True, if the self instance is less than the other vector instance.
+False, else.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="fastvector.vector.Vector2D.__module__">
+<code class="sig-name descname">__module__</code><em class="property"> = 'fastvector.vector'</em><a class="headerlink" href="#fastvector.vector.Vector2D.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="fastvector.vector.Vector2D.__mul__">
+<code class="sig-name descname">__mul__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">other: 'Union[Vector2D</em>, <em class="sig-param">SupportsFloat]'</em><span class="sig-paren">)</span> &#x2192; 'Union[Vector2D, SupportsFloat]'<a class="reference internal" href="_modules/fastvector/vector.html#Vector2D.__mul__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastvector.vector.Vector2D.__mul__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the multiplication of the self vector and the other vector(or number) instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>other</strong><span class="classifier">Vector2D or number</span></dt><dd><p>Other vector instance or scaler value (right-hand-side of the operator)</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>Vector2D</dt><dd><p>The multiplication of the self vector and the other vector(or number) instance</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="fastvector.vector.Vector2D.__repr__">
+<code class="sig-name descname">__repr__</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span> &#x2192; 'str'<a class="reference internal" href="_modules/fastvector/vector.html#Vector2D.__repr__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastvector.vector.Vector2D.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>The vector instance representation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>str</dt><dd><p>The representation of the vector instance.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="fastvector.vector.Vector2D.__str__">
+<code class="sig-name descname">__str__</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span> &#x2192; 'str'<a class="reference internal" href="_modules/fastvector/vector.html#Vector2D.__str__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastvector.vector.Vector2D.__str__" title="Permalink to this definition">¶</a></dt>
+<dd><p>The vector instance as a string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>str</dt><dd><p>The vector instance as a string.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="fastvector.vector.Vector2D.__sub__">
+<code class="sig-name descname">__sub__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">other_vector: 'Vector2D'</em><span class="sig-paren">)</span> &#x2192; 'Vector2D'<a class="reference internal" href="_modules/fastvector/vector.html#Vector2D.__sub__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastvector.vector.Vector2D.__sub__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the subtraction vector of the self and the other vector instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>other_vector</strong><span class="classifier">Vector2D</span></dt><dd><p>Other vector instance (right-hand-side of the operator)</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>Vector2D</dt><dd><p>The subtraction vector of the self and the other vector instance</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="fastvector.vector.Vector2D.__truediv__">
+<code class="sig-name descname">__truediv__</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">other: 'SupportsFloat'</em><span class="sig-paren">)</span> &#x2192; 'Vector2D'<a class="reference internal" href="_modules/fastvector/vector.html#Vector2D.__truediv__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastvector.vector.Vector2D.__truediv__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the multiplication of the self vector and the other vector(or number) instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>other</strong><span class="classifier">Vector2D or number</span></dt><dd><p>Other vector instance or scaler value (right-hand-side of the operator)</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>Vector2D</dt><dd><p>The multiplication of the self vector and the other vector(or number) instance</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="fastvector.vector.Vector2D.__weakref__">
+<code class="sig-name descname">__weakref__</code><a class="headerlink" href="#fastvector.vector.Vector2D.__weakref__" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of weak references to the object (if defined)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="fastvector.vector.Vector2D.check_vector_types">
+<code class="sig-name descname">check_vector_types</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">vector2: 'Vector2D'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/fastvector/vector.html#Vector2D.check_vector_types"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastvector.vector.Vector2D.check_vector_types" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if the self and vector2 are an instance of the Vector2D class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>vector2</strong><span class="classifier">Vector2D</span></dt><dd><p>Other vector (right of the operator).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><dl class="simple">
+<dt>TypeError</dt><dd><p>If self, or vector2 are not an instance of the Vector2D class.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-fastvector">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-fastvector" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Jan Schaffranek
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

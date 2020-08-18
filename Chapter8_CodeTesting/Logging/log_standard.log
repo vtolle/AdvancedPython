@@ -1,0 +1,15 @@
+2020-04-18 17:24:26,392:ERROR:divide_integers:Exception was raised: division by zero
+Traceback (most recent call last):
+  File "c:/Users/Jan/Dropbox/_Programmieren/UdemyPythonKurs/Chapter8_CodeTesting/Logging/logging_standard_lib.py", line 25, in divide_integers
+    result = a / b
+ZeroDivisionError: division by zero
+2020-04-18 17:24:26,392:ERROR:divide_integers:Exception was raised: division by zero
+Traceback (most recent call last):
+  File "c:/Users/Jan/Dropbox/_Programmieren/UdemyPythonKurs/Chapter8_CodeTesting/Logging/logging_standard_lib.py", line 25, in divide_integers
+    result = a / b
+ZeroDivisionError: division by zero
+2020-04-18 17:24:26,394:ERROR:divide_integers:Exception was raised: division by zero
+Traceback (most recent call last):
+  File "c:/Users/Jan/Dropbox/_Programmieren/UdemyPythonKurs/Chapter8_CodeTesting/Logging/logging_standard_lib.py", line 25, in divide_integers
+    result = a / b
+ZeroDivisionError: division by zero
